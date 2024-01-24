@@ -16,6 +16,10 @@ sinon return cache
 !! Création des fichiers SASS/SCSS
 
 ==> add event listener pour les boutons.
+>Au clic, afficher les elements correspodants à l'Id voulu
+>Au clic, ajouter la classe "btn-selected"
+>Au clic d'un autre element (deselection du bouton), enlever la classe "btn-selected"
+
 ==> voir code cours JS pour plus d'info
 
 
