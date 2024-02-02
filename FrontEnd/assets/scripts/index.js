@@ -1,6 +1,8 @@
-// Initialisation des variables
+// Initialisation des variables Générales
 const Works = await getWorks()
 const Categories = await getCategories()
+const isToken = sessionStorage.getItem("token")
+
 
 //// Création et affichage des éléments du DOM
 const portfolio = document.getElementById("portfolio")
@@ -102,7 +104,15 @@ async function displayFilters(){
       displayWorks(worksFiltered)
       btn.classList.add("btn-selected")
     })
-  }  
+  }
+  
+  //// Cacher les boutons de filtres si l'utilisateur est connecté
+  if(isToken){
+    const allbtn = document.querySelectorAll(".btn")
+    allbtn.forEach((btn)=>{
+      btn.classList.add("hidden")
+    })
+  } 
 }
 displayFilters() 
 
@@ -114,3 +124,46 @@ function removeFilterSelected() {
     button.classList.remove("btn-selected")
   })
 }
+
+
+//gestion du formulaire de contact = empêcher le rechargement de la page
+function contactForm(){
+  const submit = document.querySelector("#contact form")
+  submit.addEventListener("submit", (e)=>{
+    e.preventDefault()
+  })
+}contactForm()
+
+
+
+
+
+
+
+
+
+
+
+
+//// Récup de tout les elements modal à afficher
+const modalBar = document.querySelector(".modale_bar")
+const modalBtn = document.querySelector(".open-modal")
+const loginBtn = document.getElementById("login")
+const logoutBtn = document.getElementById("logout")
+
+console.log(modalBar, modalBtn, loginBtn, logoutBtn);
+
+  
+ if (isToken) {
+  modalBar.style.display = "flex"
+  logoutBtn.classList.remove("hidden")
+  modalBtn.classList.remove("hidden")
+  loginBtn.classList.add("hidden")
+} else {
+  console.log("non connecté")
+} 
+
+//// Gestion de la déconnexion
+logoutBtn.addEventListener("click", ()=>{
+  sessionStorage.removeItem("token")
+})

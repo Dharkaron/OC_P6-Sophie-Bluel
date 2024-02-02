@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+	
 <head>
 
 	<meta charset="UTF-8">
@@ -10,23 +11,52 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 
+	<script src="https://kit.fontawesome.com/37f15e1b46.js" crossorigin="anonymous"></script>
+
 	<link rel="stylesheet" href="./assets/css/style.css">
-	<script type="module" src="./assets/scripts/index.js" defer></script>
+	<script type="module" src="./assets/scripts/index.js"></script>
+	<script type="module" src="./assets/scripts/modale.js"></script>
 
 </head>
-<body>
 
-	<header>
+
+<body>
+	<!-- Indication de l'activation du mode Admin -->
+	<aside class="modale_bar hidden"><p><i class="fa-regular fa-pen-to-square"></i>Mode édition</p></aside>
+	
+	<!-- Boite Modale (activé au clic du bouton "modifier") -->
+	 <aside id="modal">
+		<section class="modal-wrapper">
+			<nav>
+				<button><i class="fa-solid fa-xl fa-arrow-left"></i></button>
+				<button><i class="fa-solid fa-lg fa-xmark"></i></button>
+			</nav>
+			<h2></h2>
+			
+			test d'affichage de la boite modale
+			<hr>
+			<button class="add-to-modal">Ajouter une photo</button>
+		</section>
+	</aside>
+
+	
+
+	
+	<header>		
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li>login</li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li><a href="#portfolio">projets</a></li>
+				<li><a href="#contact">contact</a></li>			
+        <!-- Contenu de la balise à changer si modale active -->
+				<li id="login"><a href="./login.html">login</a></li>
+				<li id="logout" class="hidden"><a href="index.html">logout</a></li>
+				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 			</ul>
 		</nav>
 	</header>
+
+
 
 	<main>
 
@@ -42,15 +72,25 @@
 			</article>
 		</section>
 
+
+
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+
+				<div class="gallery-title">
+					<h2>Mes Projets</h2>
+					<button class="open-modal hidden">
+						<i class="fa-regular fa-pen-to-square"></i>modifier
+					</button>
+				</div> 
+
+			
 
 		</section>
 
-		<section id="contact">
+		<section class="form" id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
-			<form action="#" method="post">
+			<form action="#" method="post" autocomplete="off">
 				<label for="name">Nom</label>
 				<input type="text" name="name" id="name">
 				<label for="email">Email</label>

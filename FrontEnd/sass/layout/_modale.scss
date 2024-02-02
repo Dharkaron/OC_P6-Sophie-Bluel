@@ -1,0 +1,91 @@
+.modale_bar{
+  display: none;
+  color:white;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 59px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: default;
+}
+
+i{
+  padding-right: 10px;
+}
+
+
+
+
+
+
+
+// Bouton d'ouverture de la boite modale
+#portfolio .gallery-title{
+	display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  
+
+  .open-modal{
+    font-size: 16px;
+  }
+}
+  
+
+
+.active {
+  display: flex !important;
+}
+
+
+// Boite Modale
+ #modal{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);  
+}
+
+
+.modal-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex:0 1 auto;
+  overflow: auto;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+
+  &::backdrop{
+    background: rgba(0,0,0,1);
+  }
+  nav{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+.add-to-modal{
+  font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+  padding: 10px 5px;
+  
+	text-align: center;
+	border-radius: 60px;
+}

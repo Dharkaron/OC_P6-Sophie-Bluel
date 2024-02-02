@@ -1,0 +1,16 @@
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+  padding: 2em 8em 2em 0;	
+  background-color: white;
+  
+  li{
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
+
+// Pour aligner le footer en bas de page
+footer {
+  margin-top: auto;
+}

@@ -1,0 +1,60 @@
+/* Section Introduction */
+#introduction {
+	display: flex;
+	align-items: center;
+  padding-bottom: 80px;
+  width: 98%;
+
+  figure {
+    flex: 1
+  }
+  img {
+    display: block;
+    margin: auto;
+    width: 80%;
+  }
+  article {
+    flex: 1
+  }
+  h2 {
+    margin-bottom: 1em;
+  }
+  p {
+    margin-bottom: 0.5em;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.42px;
+  }
+}
+
+/********************** Section Portfolio **************************/
+#portfolio {
+  padding-bottom: 60px;
+  position: relative;
+
+  h2 {
+	text-align: center;
+  }
+  /* Boutons de Filtres */
+  .filters{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin : 60px auto ;
+  }
+  .gallery {
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
