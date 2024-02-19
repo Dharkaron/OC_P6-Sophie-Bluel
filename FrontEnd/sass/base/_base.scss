@@ -1,3 +1,5 @@
+@use "../utils/" as *;
+
 /* Base html */
 
 * {
@@ -40,11 +42,10 @@ table {
 
 /********* General *****************/
 body {
-	//position: relative;
 	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
-	background-color: #fffef8;
+	background-color: $beige;
 	//// Code pour aligner le footer en bas de page
 	min-height: 100vh;
   display: flex;
@@ -60,12 +61,27 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: $green;
 }
 
 .hidden{
 	display: none;
 }
+
+.unselectable {
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+button{
+	all: unset;
+	cursor: pointer;
+}
+
+
 
 // Liens de navigation Header & Footer
 nav ul {
@@ -80,7 +96,7 @@ nav ul {
 		cursor: pointer;
 
 		&:hover {
-			color: #B1663C;
+			color: $light-brown;
 		}
 	}
 }
@@ -88,9 +104,4 @@ nav ul {
 a{
 	text-decoration: none;
 	color: inherit;
-}
-
-button{
-	all: unset;
-	cursor: pointer;
 }

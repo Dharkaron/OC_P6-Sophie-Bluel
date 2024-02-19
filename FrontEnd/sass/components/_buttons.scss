@@ -1,0 +1,56 @@
+@use "../utils" as *;
+
+// style général pour les boutons
+.btn{
+	color: $white;
+	text-align: center;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	border-radius: 60px;
+
+	cursor: pointer;
+}
+
+.btn-green{
+	background-color: $green;
+}
+
+.btn-grey{
+	background-color: $grey;
+}
+
+
+// Boutons de filtres des catégories
+.btn-category{
+	color: $green;
+	background-color: $beige;
+	border: 1px solid $green;
+	padding: 10px 20px;
+
+	&:hover {
+		color: $white;
+		background-color: $light-green;
+
+		transition: 0.18s ease-in-out;
+	}
+}
+
+.btn-selected{
+	color: $white;
+	background-color: $green;
+
+	&:hover {
+		background-color: $green;
+	 }
+}
+
+
+// boutons input des formulaires
+input[type="submit"]{
+	margin : 2em auto ;
+	width: 180px;
+}
+
+
+

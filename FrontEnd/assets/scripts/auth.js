@@ -1,6 +1,10 @@
+import { alertPopup } from "./popup.js";
+
 // Variables globales Login
-const message = document.querySelector("#log-in form p")
-  message.textContent = ""
+let content
+
+////const message = document.querySelector("#log-in form p")
+  ////message.textContent = ""
   
 
 // Lancement de la fonction de Login
@@ -27,22 +31,23 @@ async function postLogin(loginData) {
         sessionStorage.setItem("token", response.token)
         
         //// Message de connexion établie, délai, et lien vers la page index.html
-        displayMessage("connexion réussie!", false)
+        content = "connexion réussie!"
+        alertPopup(content, false)
          setTimeout(() => {
           location.href = "index.html"
         }, 1000); 
         
         
       }else{
-        displayMessage("email ou mot de passe invalide", true)
+        content = `email ou mot de passe invalide`
+        //displayMessage(content, true)
+        alertPopup(content, true)
       }
   } catch (error) {
-    let content = "Erreur de connexion, réessayer"
-    displayMessage(content, true)
-    console.error("Error:", error.message);
+    content = "Erreur de connexion, réessayer"
+    alertPopup(content, true)
   }
 }
-
 
 
 // Validation du bouton
@@ -59,7 +64,8 @@ function loginAuth() {
    
     if(mailValue === "" || passValue === ""){
       ////message d'erreur si l'un des champs est vide (ou les deux)
-      displayMessage("Veuillez remplir tout les champs", true)
+      content = `Veuillez remplir tout les champs`
+      alertPopup(content, true)
     }else{   
       let userLoginData = {
         email: mailValue,
