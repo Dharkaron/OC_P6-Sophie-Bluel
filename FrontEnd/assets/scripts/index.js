@@ -105,18 +105,6 @@ function removeFilterSelected() {
 
 
 
-//gestion du formulaire de contact = empêcher le rechargement de la page
-function contactForm(){
-  const submit = document.querySelector("#contact form")
-  submit.addEventListener("submit", (e)=>{
-    e.preventDefault()
-  })
-}contactForm()
-
-
-
-
-
 // Affichage des éléments modale si l'utilisateur est connecté
 function adminMode(){
   //// Récup de tout les elements modal à afficher
@@ -140,3 +128,15 @@ function adminMode(){
   })
 }
 adminMode()
+
+
+
+
+
+//gestion du formulaire de contact = empêcher le rechargement de la page
+function contactForm(){
+  const submit = document.querySelector("#contact form")
+  submit.addEventListener("submit", (e)=>{
+    e.preventDefault()
+  })
+}contactForm()

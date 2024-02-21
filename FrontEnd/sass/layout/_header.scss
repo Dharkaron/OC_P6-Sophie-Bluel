@@ -1,3 +1,5 @@
+@use "../utils/" as *;
+
 header {
 	display: flex;
 	flex-flow: row wrap;
@@ -5,10 +7,35 @@ header {
 	width: 98%;
 
 	nav ul{
-		display: flex;
 		flex-flow: row wrap;
-	}
 
+		.instagram-link{
+			position: relative;
+			display: flex;
+			justify-content:center;
+  		align-items:center;
+			width: 40px;
+  		height: 40px;
+
+			img{
+				position: absolute;
+				display: block;
+			}
+			#instagram-1{
+				opacity: 1;
+			}
+			#instagram-2{
+				opacity: 0;
+			}
+			&:hover #instagram-1{
+				opacity: 0;
+			}
+			&:hover #instagram-2{
+				opacity: 1;
+			}
+		}
+		
+	}
 }
 
 h1{
@@ -17,7 +44,7 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C;
+	color: $light-brown;
   
   span{
     font-family: 'Work Sans';

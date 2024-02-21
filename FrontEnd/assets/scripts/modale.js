@@ -1,19 +1,14 @@
-import { getWorks, getCategories } from "./api.js";
-import { displayWorks } from "./index.js";
+import { getWorks, getCategories, deleteWork, uploadWork } from "./api.js";
 import { alertPopup } from "./popup.js";
 
 
 
 // Initialisation des variables Générales
-const modalWorks = await getWorks()
-const modalCategories = await getCategories()
-
-
 const modalGallery = document.querySelector(".modal-gallery")
 const modalTitle = document.querySelector(".modal-wrapper h3")
 const uploadForm = document.querySelector(".upload-works")
 const goPageOne = document.querySelector(".fa-arrow-left")
-const goPageTwo = document.querySelector(".add-work")
+const goPageTwo = document.querySelector(".btn-modal")
 const modalContainer = document.getElementById("modal-container")
 
 const inputImg = document.getElementById("input-img")
@@ -53,7 +48,7 @@ displayModal()
 
 
 // Affichage de la page 1
-function modalPageOne(){
+async function modalPageOne(){
   modalGallery.style.display = "grid"
   uploadForm.style.display = "none"
   goPageTwo.style.display = "flex"
@@ -73,6 +68,7 @@ function modalPageOne(){
     })
 
   //// Affiche la galerie dans la modale
+  let modalWorks = await getWorks()
   displayModalGallery(modalWorks)
 }
 
@@ -94,7 +90,7 @@ function modalPageTwo(){
   })
 
   //// On vide le formulaire à l'ouverture de la page
-  clearForm()
+  //clearForm()
 
   //// Gestion de l'image à ajouter, et de la liste des catégories
   displayImg()
@@ -113,8 +109,9 @@ function modalPageTwo(){
 
 
   //// Ajout de photo à la galerie = envoi du formulaire
-  uploadForm.addEventListener("submit", async (event)=>{
-    event.preventDefault() 
+  uploadForm.addEventListener("submit", (event)=>{
+    event.preventDefault()
+    event.stopPropagation()
 
     //// Vérification (taille image, format image, présence d'un titre et d'une catégorie)
     if(!inputImg.files[0] || !title.value || categoryList.value === "0"){
@@ -139,7 +136,7 @@ function modalPageTwo(){
 
       console.log("le fichier à été envoyé")
 
-       let formData = new FormData()
+      const formData = new FormData()
       formData.append("title", title.value)
       formData.append("category", categoryList.value)
       formData.append("image", inputImg.files[0])
@@ -147,10 +144,15 @@ function modalPageTwo(){
 
       //// Appel à la fonction d'envoi du formulaire
       uploadWork(formData)
-      //// On vide le formulaire
-      clearForm()
+      //// Message
+      let content = "Ajout de la photo à la galerie"
+      alertPopup(content, false)
+
       //// On affiche la première page modale à l'ajout d'une photo
-      modalPageOne()
+      setTimeout(() => {                   
+        modalPageOne()
+      }, 2000)
+      
     }
   })
 }
@@ -174,7 +176,7 @@ function clearForm(){
 
 
 // Création/Affichage de la galerie Modale
-function displayModalGallery(array){
+export function displayModalGallery(array){
   //// On vide la galerie modale à l'appel de la fonction
   modalGallery.innerHTML = ""
 
@@ -235,7 +237,9 @@ function displayImg(){
 
 
 // Affichage de la liste des catégories depuis l'API
-function displayModalCategories(){
+async function displayModalCategories(){
+  let modalCategories = await getCategories()
+
   categoryList.innerHTML = ""
   
   const option0 = document.createElement("option")
@@ -252,54 +256,4 @@ function displayModalCategories(){
     categoryList.appendChild(option)
   })
 }
-
-
-
-// Fonction pour envoyer le formulaire d'ajout à l'API
-async function uploadWork(data){
-
-  try {
-    const response = await fetch("http://localhost:5678/api/works/", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`
-    },
-    body: data
-  })
-  if(response.ok){
-    let updatedWorks = await getWorks()
-    displayWorks(updatedWorks)
-    displayModalGallery(updatedWorks)
-  }
-  } catch {
-    let content = "Erreur de connexion avec l'API"
-    alertPopup(content, true)
-  }
-}
-
-
-
-
-// Fonction pour supprimer une photo de la galerie
-async function deleteWork(id){
-  const token = sessionStorage.getItem("token")
-
-  try{
-    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    if(response.ok){
-      const updatedWorks = await getWorks()
-      displayWorks(updatedWorks)
-      displayModalGallery(updatedWorks)
-    }
-  }
-  catch {
-    let content = "Erreur de connexion avec l'API"
-    alertPopup(content, true)
-  }
-}
-
+      

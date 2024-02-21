@@ -10,7 +10,7 @@
     left: 0;
     height: 100vh;
     width: 100vw;
-    background: rgba(0, 0, 0 ,0.2);
+    background: rgba($black ,0.2);
 
     .popup {
       position: absolute;
@@ -29,6 +29,11 @@
         font-size: 18px;
         font-weight: 700;
         line-height: 20px;
+    }
+
+    .fa-solid{
+      height: 20px;
+      width: 20px;
     }
   }
 }

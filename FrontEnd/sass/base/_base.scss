@@ -1,6 +1,5 @@
 @use "../utils/" as *;
 
-/* Base html */
 
 * {
 	margin: 0;
@@ -12,35 +11,7 @@
 	scroll-behavior: smooth;
 }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/** end reset css**/
 
-
-
-
-/********* General *****************/
 body {
 	margin: auto;
 	font-family: 'Work Sans' ;
@@ -64,6 +35,16 @@ h2{
 	color: $green;
 }
 
+button{
+	all: unset;
+	cursor: pointer;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
 .hidden{
 	display: none;
 }
@@ -76,32 +57,4 @@ h2{
 	user-select: none;
 }
 
-button{
-	all: unset;
-	cursor: pointer;
-}
 
-
-
-// Liens de navigation Header & Footer
-nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-	gap: 20px;
-
-	li {
-		padding: 0 10px;
-		font-size: 1.2em;
-		cursor: pointer;
-
-		&:hover {
-			color: $light-brown;
-		}
-	}
-}
-
-a{
-	text-decoration: none;
-	color: inherit;
-}

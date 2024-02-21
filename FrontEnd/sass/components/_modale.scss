@@ -46,7 +46,7 @@ i{
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.3);
+  background: rgba($black, 0.3);
   
   .modal-wrapper{
     position: relative;
@@ -58,7 +58,7 @@ i{
     overflow: auto;
     box-sizing: border-box;
     width: 630px;
-    height: 688px;
+    height: 610px;
     max-width:calc(100vw - 40px);
     max-height:calc(100vh - 60px);
     padding: 20px;
@@ -67,13 +67,13 @@ i{
   
     .fa-arrow-left{
       position: absolute;
-      top: 20px;
+      top: 30px;
       left: 20px;
       display: none;
     }
     .fa-xmark{
       position: absolute;
-      top: 20px;
+      top: 30px;
       right: 20px;
     }
   
@@ -85,15 +85,18 @@ i{
       padding-top: 20px;
     }
   
-    .modal-gallery{    
-        margin: 20px 80px;
+    .modal-gallery{          
+        margin: 20px 60px;
+        padding-bottom: 40px;
+
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 20px;
-        overflow: auto;
-        border-bottom: 1px solid $darker-grey;
-        padding-bottom: 20px;
+        
+        overflow-y: auto;
+        border-bottom: 1px solid $grey-2;
+        box-sizing: border-box;
   
         figure{
           position: relative;
@@ -124,6 +127,11 @@ i{
         }
     }
 
+    .btn-modal{
+      padding: 10px 40px;
+      margin-bottom: 10px;
+    }
+
     .upload-works{
       display: none;
       box-sizing: border-box;
@@ -131,6 +139,7 @@ i{
       align-items: center;
       justify-content: space-between;
       margin: auto;
+      margin-top: 20px;
       gap: 20px;
           
       .upload-img{    
@@ -146,11 +155,11 @@ i{
           .img-placeholder{
             padding-top: 30px;
             width: 76px;
-            fill: rgb(185, 197, 204);
+            fill: $grey-3;
           }
           p{
-            color: #444444;
-            font-size: 10px;
+            color: $darker-grey;
+            font-size: 12px;
             font-weight: 400;
             margin-top: -15px;
             padding-bottom: 30px;
@@ -161,8 +170,8 @@ i{
             margin-bottom: 20px;
             text-align: center;
             border-radius: 60px;
-            background-color: rgb(203, 214, 220);
-            color: #306685;
+            background-color: $grey-4;
+            color: $blue;
             cursor: pointer;
           }
           input{
@@ -178,7 +187,7 @@ i{
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          border-bottom: 1px solid $darker-grey;
+          border-bottom: 1px solid $grey-2;
           padding-bottom: 20px;
     
           label{
@@ -192,42 +201,19 @@ i{
             width: 420px;
             height: 51px;
             box-sizing: border-box;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 14px rgba($black,0.1);
             margin-bottom: 20px;
+            padding-left: 10px;
           }
+          
+          
         }
         #upload-form-submit{
-          padding: 0;
+          padding: 10px 80px;
           margin: 0;
           display: flex;
-          font-family: 'Syne';
-          font-weight: 700;
-          color: $white;
-          padding: 10px 40px;
-          text-align: center;
-          border-radius: 60px;
+          justify-content: center;
         }
     }  
   }
 }
-
-
-.add-work{
-  display: flex;
-  font-family: 'Syne';
-	font-weight: 700;
-	color: $white;
-  padding: 10px 40px;
-  margin-bottom: 20px;
-  background-color: $green;
-	text-align: center;
-	border-radius: 60px;
-}
-
-
-
-
-
-
-
-

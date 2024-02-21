@@ -1,4 +1,3 @@
-/* Base html */
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +6,50 @@
   font: inherit;
   vertical-align: baseline;
   scroll-behavior: smooth;
+}
+
+body {
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+  background-color: rgb(255, 254, 248);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header, section {
+  max-width: 1140px;
+  margin: 50px auto;
+}
+
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: rgb(29, 97, 84);
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hidden {
+  display: none;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -36,67 +79,6 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-/** end reset css**/
-/********* General *****************/
-body {
-  margin: auto;
-  font-family: "Work Sans";
-  font-size: 14px;
-  background-color: rgb(255, 254, 248);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header, section {
-  max-width: 1140px;
-  margin: 50px auto;
-}
-
-h2 {
-  font-family: "Syne";
-  font-weight: 700;
-  font-size: 30px;
-  color: rgb(29, 97, 84);
-}
-
-.hidden {
-  display: none;
-}
-
-.unselectable {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-button {
-  all: unset;
-  cursor: pointer;
-}
-
-nav ul {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  gap: 20px;
-}
-nav ul li {
-  padding: 0 10px;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-nav ul li:hover {
-  color: rgb(177, 102, 60);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 .btn {
@@ -137,44 +119,6 @@ a {
   background-color: rgb(29, 97, 84);
 }
 
-input[type=submit] {
-  margin: 2em auto;
-  width: 180px;
-}
-
-.form {
-  margin: auto;
-  text-align: center;
-  width: 30%;
-}
-.form h2 {
-  margin-bottom: 20px;
-}
-.form form {
-  text-align: left;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-}
-.form form input, .form form textarea {
-  border: none;
-  padding-left: 10px;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-.form form input {
-  height: 50px;
-  font-size: 1.2em;
-}
-.form form textarea {
-  padding: 5px 0 0 5px;
-}
-.form form label {
-  margin: 2em 0 1em 0;
-}
-.form a:hover {
-  text-decoration: underline;
-}
-
 .popupBackground {
   display: none;
   justify-content: center;
@@ -205,45 +149,9 @@ input[type=submit] {
   font-weight: 700;
   line-height: 20px;
 }
-
-header {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  width: 98%;
-}
-header nav ul {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-h1 {
-  display: flex;
-  flex-direction: column;
-  font-family: "Syne";
-  font-size: 22px;
-  font-weight: 800;
-  color: #B1663C;
-}
-h1 span {
-  font-family: "Work Sans";
-  font-size: 10px;
-  letter-spacing: 0.1em;
-}
-
-footer nav ul {
-  display: flex;
-  justify-content: flex-end;
-  padding: 2em 8em 2em 0;
-  background-color: white;
-}
-footer nav ul li {
-  font-size: 16px;
-  font-weight: 300;
-}
-
-footer {
-  margin-top: auto;
+.popupBackground .popup .fa-solid {
+  height: 20px;
+  width: 20px;
 }
 
 .modale_bar {
@@ -296,7 +204,7 @@ i {
   overflow: auto;
   box-sizing: border-box;
   width: 630px;
-  height: 688px;
+  height: 610px;
   max-width: calc(100vw - 40px);
   max-height: calc(100vh - 60px);
   padding: 20px;
@@ -305,13 +213,13 @@ i {
 }
 #modal-container .modal-wrapper .fa-arrow-left {
   position: absolute;
-  top: 20px;
+  top: 30px;
   left: 20px;
   display: none;
 }
 #modal-container .modal-wrapper .fa-xmark {
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 20px;
 }
 #modal-container .modal-wrapper h3 {
@@ -321,14 +229,15 @@ i {
   padding-top: 20px;
 }
 #modal-container .modal-wrapper .modal-gallery {
-  margin: 20px 80px;
+  margin: 20px 60px;
+  padding-bottom: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
-  overflow: auto;
+  overflow-y: auto;
   border-bottom: 1px solid rgb(179, 179, 179);
-  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 #modal-container .modal-wrapper .modal-gallery figure {
   position: relative;
@@ -356,6 +265,10 @@ i {
   padding: 0;
   margin: 0;
 }
+#modal-container .modal-wrapper .btn-modal {
+  padding: 10px 40px;
+  margin-bottom: 10px;
+}
 #modal-container .modal-wrapper .upload-works {
   display: none;
   box-sizing: border-box;
@@ -363,6 +276,7 @@ i {
   align-items: center;
   justify-content: space-between;
   margin: auto;
+  margin-top: 20px;
   gap: 20px;
 }
 #modal-container .modal-wrapper .upload-works .upload-img {
@@ -381,8 +295,8 @@ i {
   fill: rgb(185, 197, 204);
 }
 #modal-container .modal-wrapper .upload-works .upload-img p {
-  color: #444444;
-  font-size: 10px;
+  color: rgb(68, 68, 68);
+  font-size: 12px;
   font-weight: 400;
   margin-top: -15px;
   padding-bottom: 30px;
@@ -394,7 +308,7 @@ i {
   text-align: center;
   border-radius: 60px;
   background-color: rgb(203, 214, 220);
-  color: #306685;
+  color: rgb(48, 102, 133);
   cursor: pointer;
 }
 #modal-container .modal-wrapper .upload-works .upload-img input {
@@ -424,29 +338,128 @@ i {
   box-sizing: border-box;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 #modal-container .modal-wrapper .upload-works #upload-form-submit {
-  padding: 0;
+  padding: 10px 80px;
   margin: 0;
   display: flex;
-  font-family: "Syne";
-  font-weight: 700;
-  color: rgb(255, 255, 255);
-  padding: 10px 40px;
-  text-align: center;
-  border-radius: 60px;
+  justify-content: center;
 }
 
-.add-work {
+header {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 98%;
+}
+header nav ul {
+  flex-flow: row wrap;
+}
+header nav ul .instagram-link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+header nav ul .instagram-link img {
+  position: absolute;
+  display: block;
+}
+header nav ul .instagram-link #instagram-1 {
+  opacity: 1;
+}
+header nav ul .instagram-link #instagram-2 {
+  opacity: 0;
+}
+header nav ul .instagram-link:hover #instagram-1 {
+  opacity: 0;
+}
+header nav ul .instagram-link:hover #instagram-2 {
+  opacity: 1;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
   font-family: "Syne";
-  font-weight: 700;
-  color: rgb(255, 255, 255);
-  padding: 10px 40px;
-  margin-bottom: 20px;
-  background-color: rgb(29, 97, 84);
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+}
+h1 span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2em 8em 2em 0;
+  background-color: white;
+}
+footer nav ul li {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+footer {
+  margin-top: auto;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 20px;
+}
+nav ul li {
+  padding: 0 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+nav ul li:hover {
+  color: #b1663c;
+}
+
+.form {
+  margin: auto;
   text-align: center;
-  border-radius: 60px;
+  width: 30%;
+}
+.form h2 {
+  margin-bottom: 20px;
+}
+.form form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.form form input, .form form textarea {
+  border: none;
+  padding-left: 10px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.form form input {
+  height: 50px;
+  font-size: 1.2em;
+}
+.form form textarea {
+  padding: 5px 0 0 5px;
+}
+.form form label {
+  margin: 2em 0 1em 0;
+}
+.form form input[type=submit] {
+  margin: 2em auto;
+  width: 180px;
+}
+.form a:hover {
+  text-decoration: underline;
 }
 
 /* Section Introduction */
@@ -516,12 +529,6 @@ i {
 
 #log-in h2 {
   margin-bottom: -20px;
-}
-#log-in form p {
-  text-align: center;
-  margin: 20px 0 -10px 0;
-  font-size: 18px;
-  font-weight: 600;
 }
 
 /*# sourceMappingURL=style.css.map */

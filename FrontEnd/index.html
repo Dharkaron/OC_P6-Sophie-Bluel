@@ -26,16 +26,16 @@
 	
 	<!-- Boite Modale (activé au clic du bouton "modifier") -->
 	 <aside id="modal-container">
-		<div class="modal-wrapper">
-			<nav>
+		<div class="modal-wrapper">			
+
 				<button><i class="fa-solid fa-xl fa-arrow-left"></i></button>
-				<button><i class="fa-solid fa-lg fa-xmark"></i></button>
-			</nav>
+				<button><i class="fa-solid fa-lg fa-xmark"></i></button>	
+					
 			<h3>Galerie photo</h3>
 			
 			<section class="modal-gallery"></section>
 
-			<button class="btn unselectable add-work">Ajouter une photo</button>
+			<button class="btn btn-green btn-modal unselectable">Ajouter une photo</button>
 
 			<form class="upload-works" action="#" method="post" autocomplete="off">
 				
@@ -71,7 +71,10 @@
         <!-- Contenu de la balise à changer si modale active -->
 				<li id="login"><a href="./login.html">login</a></li>
 				<li id="logout" class="hidden"><a href="index.html">logout</a></li>
-				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+				<li><a class="instagram-link" href="#">
+					<img id="instagram-1" src="./assets/icons/instagram-1.png" alt="Instagram">
+					<img id="instagram-2" src="./assets/icons/instagram-2.png" alt="Instagram">
+				</a></li>
 			</ul>
 		</nav>
 	</header>

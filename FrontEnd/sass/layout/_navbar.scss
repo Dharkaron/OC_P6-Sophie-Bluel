@@ -1,0 +1,19 @@
+@use "../utils/" as *;
+
+// Liens du Header & Footer
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	gap: 20px;
+
+	li {
+		padding: 0 10px;
+		font-size: 1.2em;
+		cursor: pointer;
+
+		&:hover {
+			color: $light-brown;
+		}
+	}
+}

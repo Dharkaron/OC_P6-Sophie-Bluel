@@ -1,12 +1,5 @@
 import { alertPopup } from "./popup.js";
 
-// Variables globales Login
-let content
-
-////const message = document.querySelector("#log-in form p")
-  ////message.textContent = ""
-  
-
 // Lancement de la fonction de Login
 loginAuth()
 
@@ -31,7 +24,7 @@ async function postLogin(loginData) {
         sessionStorage.setItem("token", response.token)
         
         //// Message de connexion établie, délai, et lien vers la page index.html
-        content = "connexion réussie!"
+        let content = "connexion réussie!"
         alertPopup(content, false)
          setTimeout(() => {
           location.href = "index.html"
@@ -39,18 +32,17 @@ async function postLogin(loginData) {
         
         
       }else{
-        content = `email ou mot de passe invalide`
-        //displayMessage(content, true)
+        let content = `email ou mot de passe invalide`
         alertPopup(content, true)
       }
   } catch (error) {
-    content = "Erreur de connexion, réessayer"
+    let content = "Erreur de connexion, réessayer"
     alertPopup(content, true)
   }
 }
 
 
-// Validation du bouton
+// Validation du formulaire de connexion
 function loginAuth() {
   const loginForm = document.querySelector("#log-in form")
   //// Écouteur d'événement pour le bouton du formulaire de login
@@ -64,7 +56,7 @@ function loginAuth() {
    
     if(mailValue === "" || passValue === ""){
       ////message d'erreur si l'un des champs est vide (ou les deux)
-      content = `Veuillez remplir tout les champs`
+      let content = `Veuillez remplir tout les champs`
       alertPopup(content, true)
     }else{   
       let userLoginData = {
@@ -74,18 +66,4 @@ function loginAuth() {
       postLogin(userLoginData)
     }
   }) 
-}
-
-
-// Gestion des messages d'erreur du formulaire
-function displayMessage(content, color){
-  message.textContent = content
-  //// Adapte la couleur du texte affiché selon la valeur "vrai ou faux" de "color"
-    if(color){
-    message.style.color = "#b13c3c"
-    }else if(!color){
-      message.style.color = "#3cb146"
-    }else {
-      console.log("error");
-    }
 }
