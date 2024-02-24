@@ -11,12 +11,12 @@ const goPageOne = document.querySelector(".fa-arrow-left")
 const goPageTwo = document.querySelector(".btn-modal")
 const modalContainer = document.getElementById("modal-container")
 
-const inputImg = document.getElementById("input-img")
+let inputImg = document.getElementById("input-img")
 const categoryList = document.getElementById("addCat")
 const formSubmit = document.getElementById("upload-form-submit")
-const title = document.getElementById("addTitle")
+let title = document.getElementById("addTitle")
 const maxFileSize = 4*1024*1024 ////4194304 octet = 4Mo
-
+const modalErrorMessage = document.querySelector(".error-modal")
 
 
 
@@ -64,111 +64,12 @@ async function modalPageOne(){
       goPageOne.style.display = "block"
       modalTitle.innerText = "Ajout Photo"
 
-    modalPageTwo()
+      modalPageTwo()
     })
 
   //// Affiche la galerie dans la modale
   let modalWorks = await getWorks()
   displayModalGallery(modalWorks)
-}
-
-
-
-
-
-
-// Affichage de la page 2 (formulaire pour ajouter une image)
-function modalPageTwo(){
-  //// Retour à la galerie modale (page 1)
-  goPageOne.addEventListener("click", ()=>{
-    modalGallery.style.display = "grid"
-    uploadForm.style.display = "none"
-    goPageTwo.style.display = "flex"
-
-    goPageOne.style.display = "none"
-    modalTitle.innerText = "Galerie photo"
-  })
-
-  //// On vide le formulaire à l'ouverture de la page
-  //clearForm()
-
-  //// Gestion de l'image à ajouter, et de la liste des catégories
-  displayImg()
-  displayModalCategories()
-
-
-  //// Activation du bouton submit à l'ajout d'une image
-  inputImg.addEventListener("input", ()=>{
-    if(inputImg.files[0] !== null){
-
-      formSubmit.classList.replace("btn-grey", "btn-green")
-      formSubmit.removeAttribute('disabled')
-      formSubmit.style.cursor = "pointer"
-    }
-  })
-
-
-  //// Ajout de photo à la galerie = envoi du formulaire
-  uploadForm.addEventListener("submit", (event)=>{
-    event.preventDefault()
-    event.stopPropagation()
-
-    //// Vérification (taille image, format image, présence d'un titre et d'une catégorie)
-    if(!inputImg.files[0] || !title.value || categoryList.value === "0"){
-      //// Message d'erreur popup
-      let content = "Un ou plusieurs des champs sont vide. \nComplétez le formulaire avant de l'envoyer"
-      alertPopup(content, true)
-      
-    }else if(inputImg.files[0].size > maxFileSize){
-      //// Message d'erreur popup
-      let content = `Votre image pèse ${(inputImg.files[0].size/1024/1024).toFixed(3)} Mo \nLe poids du fichier doit être inférieur à 4Mo`
-      alertPopup(content, true)
-
-    }else if(inputImg.files[0].type !== "image/png" && inputImg.files[0].type !== "image/jpg"){
-      //// Message d'erreur popup
-      let content = "Mauvais format de fichier. \nSélectionnez une image au format jpg ou png"
-      alertPopup(content, true)
-
-    }else{
-      
-      //// On désactive le bouton pour empécher plusieurs clic/envoi du formulaire
-      formSubmit.setAttribute('disabled', true)
-
-      console.log("le fichier à été envoyé")
-
-      const formData = new FormData()
-      formData.append("title", title.value)
-      formData.append("category", categoryList.value)
-      formData.append("image", inputImg.files[0])
-      console.log(formData)
-
-      //// Appel à la fonction d'envoi du formulaire
-      uploadWork(formData)
-      //// Message
-      let content = "Ajout de la photo à la galerie"
-      alertPopup(content, false)
-
-      //// On affiche la première page modale à l'ajout d'une photo
-      setTimeout(() => {                   
-        modalPageOne()
-      }, 2000)
-      
-    }
-  })
-}
-
-
-
-
-// Vide les champs du formulaire, et désactive le bouton submit
-function clearForm(){
-  formSubmit.classList.replace("btn-green", "btn-grey")
-  formSubmit.setAttribute('disabled', true)
-  formSubmit.style.cursor = "default"
-
-  inputImg.value = ""
-  title.value = ""
-  categoryList.value = "0"
 }
 
 
@@ -206,6 +107,104 @@ export function displayModalGallery(array){
     })
   })
 }
+
+
+
+
+
+
+// Affichage de la page 2 (formulaire pour ajouter une image)
+function modalPageTwo(){
+  //// Retour à la galerie modale (page 1)
+  goPageOne.addEventListener("click", ()=>{
+    modalGallery.style.display = "grid"
+    uploadForm.style.display = "none"
+    goPageTwo.style.display = "flex"
+
+    goPageOne.style.display = "none"
+    modalTitle.innerText = "Galerie photo"
+  })
+
+  //// On vide le formulaire à l'ouverture de la page
+  clearForm()
+
+  //// Gestion de l'image à ajouter, et de la liste des catégories
+  displayImg()
+  displayModalCategories()
+
+
+  //// Activation du bouton submit à l'ajout d'une image
+  inputImg.addEventListener("input", ()=>{
+    if(inputImg.files[0] !== null){
+
+      formSubmit.classList.replace("btn-grey", "btn-green")
+      formSubmit.removeAttribute('disabled')
+      formSubmit.style.cursor = "pointer"
+    }
+  })
+
+  //// On vide le message d'erreur
+  modalErrorMessage.innerText = ""
+
+  //// Ajout de photo à la galerie = envoi du formulaire
+  uploadForm.addEventListener("submit", (event)=>{
+    event.preventDefault()
+    event.stopPropagation()
+
+    //// Vérification (taille image, format image, présence d'un titre et d'une catégorie)
+    if(!inputImg.files[0] || !title.value || categoryList.value === "0"){
+      let content = "Un ou plusieurs des champs sont vide. \nComplétez le formulaire avant de l'envoyer"
+      errorModal(content)
+
+    }else if(inputImg.files[0].size > maxFileSize){
+      let content = `Votre image pèse ${(inputImg.files[0].size/1024/1024).toFixed(3)} Mo \nLe poids du fichier doit être inférieur à 4Mo`
+      errorModal(content)
+
+    }else if(inputImg.files[0].type !== "image/png" && inputImg.files[0].type !== "image/jpg"){
+      let content = "Mauvais format de fichier. \nSélectionnez une image au format jpg ou png"
+      errorModal(content)
+
+    }else{
+      
+      //// Récupération des données à envoyer
+      const formData = new FormData()
+      formData.append("title", title.value)
+      formData.append("category", categoryList.value)
+      formData.append("image", inputImg.files[0])
+        console.log(formData)
+
+      //// Appel à la fonction d'envoi du formulaire
+      uploadWork(formData)
+
+      //// Message
+      let content = "Ajout de la photo à la galerie"
+      alertPopup(content, false)
+
+      //// On vide le formulaire
+      clearForm()
+
+      //// On affiche la première page modale à l'ajout d'une photo                
+      modalPageOne()
+      
+    }
+  })
+}
+
+
+
+
+// Vide les champs du formulaire, et désactive le bouton submit
+function clearForm(){
+  formSubmit.classList.replace("btn-green", "btn-grey")
+  formSubmit.setAttribute('disabled', true)
+  formSubmit.style.cursor = "default"
+
+  inputImg.value = ""
+  title.value = ""
+  categoryList.value = "0"
+}
+
+
 
 
 
@@ -256,4 +255,21 @@ async function displayModalCategories(){
     categoryList.appendChild(option)
   })
 }
-      
+ 
+
+
+// Message d'erreur dans la modale pour l'ajout de photos
+function errorModal(content){
+  modalErrorMessage.innerText = content
+ 
+  //// fermeture auto de la popup
+   let timeoutHandle = setTimeout(() => {
+    modalErrorMessage.innerText = ""
+  }, 5000)
+
+  timeoutHandle
+
+  formSubmit.addEventListener("click", ()=>{
+      clearTimeout(timeoutHandle)  
+  })
+}

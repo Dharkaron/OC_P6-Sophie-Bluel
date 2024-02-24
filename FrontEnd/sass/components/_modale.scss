@@ -58,9 +58,9 @@ i{
     overflow: auto;
     box-sizing: border-box;
     width: 630px;
-    height: 610px;
+    height: 680px;
     max-width:calc(100vw - 40px);
-    max-height:calc(100vh - 60px);
+    max-height:calc(100vh - 20px);
     padding: 20px;
     background-color: $white;
     border-radius: 10px;
@@ -204,15 +204,16 @@ i{
             box-shadow: 0 4px 14px rgba($black,0.1);
             margin-bottom: 20px;
             padding-left: 10px;
-          }
-          
-          
+          }   
         }
         #upload-form-submit{
           padding: 10px 80px;
           margin: 0;
           display: flex;
           justify-content: center;
+        }
+        .error-modal{
+          color: $light-brown;
         }
     }  
   }

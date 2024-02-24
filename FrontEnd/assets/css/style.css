@@ -204,9 +204,9 @@ i {
   overflow: auto;
   box-sizing: border-box;
   width: 630px;
-  height: 610px;
+  height: 680px;
   max-width: calc(100vw - 40px);
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - 20px);
   padding: 20px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -345,6 +345,9 @@ i {
   margin: 0;
   display: flex;
   justify-content: center;
+}
+#modal-container .modal-wrapper .upload-works .error-modal {
+  color: #b1663c;
 }
 
 header {

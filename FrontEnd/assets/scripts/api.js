@@ -63,6 +63,9 @@ export async function uploadWork(data){
     const updatedWorks = await getWorks()
     displayWorks(updatedWorks)
     displayModalGallery(updatedWorks)
+    
+  }else{
+    console.log("erreur")
   }
   }catch(err){
     console.error(err.message)
